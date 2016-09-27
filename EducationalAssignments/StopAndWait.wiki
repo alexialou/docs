@@ -14,7 +14,7 @@ The requirements for the assignment includes a library, a client program, and a 
 ----
 You will implement your stop-and-wait protocol over Repy's UDP functions.  Specifically, you must extend the ''recvmess'' and ''sendmess'' Repy routines:
 {{{
-#!python   
+#!python
 recvmess(localip, localport, function) # Returns an event handler
 sendmess(desthost, destport, message, localip=None, localport=None) # Returns the bytes sent
 }}}
@@ -25,7 +25,7 @@ See the [wiki:RepyApi Repy Library Reference] for more details.
 ----
 Your protocol should run as a library in a file called '''reliable.repy'''.  It should extend ''recvmess'' and ''sendmess'' with three new routines:
 {{{
-#!python     
+#!python
 reliable_recvmess(srcip, srcport, function) # Returns an event handler
 reliable_sendmess(destip, destport, message, srcip=None, srcport=None) # Returns the bytes sent
 reliable_config(maxdgramsize, retries, timeoutinms) # No return
@@ -38,7 +38,7 @@ The third routine allows you to parametrize the number of retransmissions that s
 === Message Structure ===
 ----
 
-You will need to define a message structure that includes a header field for your alternating bit protocol, and a payload field, which contains the actual data that the protocol is supposed to deliver reliably.  
+You will need to define a message structure that includes a header field for your alternating bit protocol, and a payload field, which contains the actual data that the protocol is supposed to deliver reliably.
 
 For automatic grading, your message structure must:
  1. Be in the format <header><delimiter><payload> __in that order__.
@@ -79,7 +79,7 @@ Your protocol should run as a library that is included into a client program, ''
 python repypp.py reliable_client.repy reliable_client
 }}}
 
-If after pre-processing reliable_client.repy and reliable_server.repy, your main client program may be called "reliable_client" and your server program may be "reliable_server."  
+If after pre-processing reliable_client.repy and reliable_server.repy, your main client program may be called "reliable_client" and your server program may be "reliable_server."
 Execute them locally using '''repy.py'''.  For example:
 {{{
  $ python repy.py restriction.file reliable_client in.file `hostname -i` 12345 `hostname -i` 12346
@@ -134,7 +134,7 @@ Include a thoughtful discussion and analysis of the results of no more than one 
 
  * Your code should gracefully handle duplicate acks and data packets. That is, it should ignore duplicate packets, and possibly use them as an indicator of the other endpoint's state.
 
- * Your reliable server will additionally need a final timeout after which the reliable server will exit. This is so that you will not overload your machine with forked processes unknowingly during testing. 
+ * Your reliable server will additionally need a final timeout after which the reliable server will exit. This is so that you will not overload your machine with forked processes unknowingly during testing.
 
  * '''WARNING:''' If your code crashes, you may need to kill any remaining processes. In Linux, you can use `ps` to find these processes and if you find rogue "python" threads running, use `killall -9 python` to stop them!
 
@@ -149,4 +149,4 @@ Turn in a tar file called "reliable.tar" that contains a directory called Reliab
  * reliable_client.repy
  * results.pdf
  * README
-The file results.pdf contains your evaluation. The file called README contains any information we might need in evaluating your solution. For example, bugs and limitations should be included in the README. 
+The file results.pdf contains your evaluation. The file called README contains any information we might need in evaluating your solution. For example, bugs and limitations should be included in the README.

@@ -55,7 +55,7 @@ To use repy functions from an interactive python interpreter, you can open Pytho
 
 ```
 Justin-Capposs-MacBook-Pro:test2 justincappos$ python
-Python 2.7.1 (r271:86832, Jun 16 2011, 16:59:05) 
+Python 2.7.1 (r271:86832, Jun 16 2011, 16:59:05)
 [GCC 4.2.1 (Based on Apple Inc. build 5658) (LLVM build 2335.15.00)] on darwin
 Type "help", "copyright", "credits" or "license" for more information.
 >>> from repyportability import *
@@ -69,7 +69,7 @@ Note that this will not provide the security and performance isolation from Repy
 
 ##### Basic Instructions
 
-First, make sure that you have the repy files [(download)](https://seattleclearinghouse.poly.edu/download/flibble/) and [restrictions.test](https://raw.githubusercontent.com/SeattleTestbed/repy_v1/master/apps/example/restrictions.test) in your `seattle_repy` directory. 
+First, make sure that you have the repy files [(download)](https://seattleclearinghouse.poly.edu/download/flibble/) and [restrictions.test](https://raw.githubusercontent.com/SeattleTestbed/repy_v1/master/apps/example/restrictions.test) in your `seattle_repy` directory.
 
 Install repy by running the relevant installer. For windows, it is `install.bat`.
 
@@ -88,7 +88,7 @@ Hello World
 Terminated
 ```
 
-"Hello World" was printed, and then the last sentence means that the program was terminated successfully. 
+"Hello World" was printed, and then the last sentence means that the program was terminated successfully.
 
 Not all users will see "Terminated". This only shows up on some operating systems. Other operating systems may have different messages.
 
@@ -128,10 +128,10 @@ This command will tell the shell to locate resources that have been assigned to 
 john@ !> browse
 Added targets: %1(10.0.1.1:1224:v9), %2(10.0.1.2:2888:v9)
 Added group 'browsegood' with 2 targets
-The command browse produced the output that shows resources(targets) you can control. 
+The command browse produced the output that shows resources(targets) you can control.
 ```
 
-In the first target `%1(10.0.1.1:1224:v9)`, `%1` is the alias of the target, `10.0.1.1` is IP address, `1224` is port number, and `v9` is VM name. The VM is the partial portion of whole donated resources. It means that the donated resources could be one VM or divided and assigned to more than one person. 
+In the first target `%1(10.0.1.1:1224:v9)`, `%1` is the alias of the target, `10.0.1.1` is IP address, `1224` is port number, and `v9` is VM name. The VM is the partial portion of whole donated resources. It means that the donated resources could be one VM or divided and assigned to more than one person.
 
 **Step 4. Access the resources(VMs)**
 
@@ -186,7 +186,7 @@ You can find more practical examples in the [Take home assignment](https://githu
 [example.1.2.repy](https://raw.githubusercontent.com/SeattleTestbed/repy_v1/master/apps/example/example.1.2.repy)
 
 
-In this example, we'll wait for the user to browse a port we listen on. When the user browses our page, we'll display a hello world webpage and then exit. 
+In this example, we'll wait for the user to browse a port we listen on. When the user browses our page, we'll display a hello world webpage and then exit.
 
 ```python
 def hello(ip,port,sockobj, thiscommhandle,listencommhandle):
@@ -194,7 +194,7 @@ def hello(ip,port,sockobj, thiscommhandle,listencommhandle):
 
   htmlresponse = "<html><head><title>Hello World</title></head>" + \
     "<body><h1> Hello World! </h1></body></html>"
-  
+
   sockobj.send("HTTP/1.1 200 OK\r\nContent-type: text/html\r\n" + \
     "Content-length: %i\r\n\r\n%s" % (len(htmlresponse), htmlresponse))
 
@@ -217,14 +217,14 @@ if callfunc == 'initialize':
     port = 12345
     ip = '127.0.0.1'
   listencommhandle = waitforconn(ip,port,hello)   
-  
+
 
 ```
 
 The initialize portion has two options.  If you run it locally, it says, wait for a connection on `127.0.0.1` (the "local" IP of the computer), port `12345`, and when you get, it calls the function `hello()`.
 
 ```
-127.0.0.1 is a special IP address. 
+127.0.0.1 is a special IP address.
 It is localhost and means this computer. It is used to access the computer currently used.
 ```
 
@@ -238,7 +238,7 @@ The `waitforconn()` function returns a commhandle. A commhandle is a way for you
 ```
 waitforconn(IP address, Port number, Callback function)
 
-IP address : IP address to listen on 
+IP address : IP address to listen on
 Port number : The port to bind to
 Callback function : Callback function to be executed whenever a TCP connection is made to that IP/port
 
@@ -247,7 +247,7 @@ To read more about `waitforconn()`, visit the [API](https://github.com/SeattleTe
 
 
 The function `hello()` sends the webpage (the text in quotes) using the sockobj and then closes the current connection (using the commhandle).
-``` 
+```
 hello(IP address, Port number, Socket Object, commhandle1, commhandle2)
 
 The ip address and port : the users are connecting to.
@@ -255,7 +255,7 @@ Socket Object : End-point of a bidirectional communication flow across the Inter
 Commhandle1 : Handle created by connection
 Commhandle2 : Handle created for establishing connection, which hello is registered on
 
-In the Berkeley sockets API in the C language, 
+In the Berkeley sockets API in the C language,
 Commhandle1 is the new socket created by accept function,
 and commhadle2 is initial socket created by socket function.
 ```
@@ -290,7 +290,7 @@ default@%1 !> list
   %1             IP address:port:VMname     Started     
 ```
 
-Notice that the program is "Started" instead of "Terminated". It's still running! 
+Notice that the program is "Started" instead of "Terminated". It's still running!
 
 Now open a web browser and in the address bar type: `IP_of_%1:Clearinghouseport`.  For example, if 1.2.3.4 is the IP address of %1, and your port is 54321 then open your browser and in the address bar type `http://1.2.3.4:54321`. If the node doesn't respond, try again.    You should see the hello world webpage.
 
@@ -333,7 +333,7 @@ def hello(ip,port,sockobj, thiscommhandle,listencommhandle):
 if callfunc == 'initialize':
   global pagecount   # GLOBALS ARE NOT ALLOWED IN REPY
   pagecount = 0
-  
+
   if len(callargs) > 1:
     raise Exception("Too many call arguments")
 
@@ -369,7 +369,7 @@ def hello(ip,port,sockobj, thiscommhandle,listencommhandle):
 
 if callfunc == 'initialize':
   mycontext['pagecount'] = 0
-  
+
   if len(callargs) > 1:
     raise Exception("Too many call arguments")
 
@@ -413,13 +413,13 @@ def hello(ip,port,sockobj, thiscommhandle,listencommhandle):
     "Content-length: %i\r\n\r\n%s" % (len(htmlresponse), htmlresponse))
 
   stopcomm(thiscommhandle)   # close my connection with this user
- 
+
 def stop_listening(commhandle):
   stopcomm(commhandle)   # this will deregister hello
 
 if callfunc == 'initialize':
   mycontext['pagecount'] = 0
-  
+
   if len(callargs) > 1:
     raise Exception("Too many call arguments")
 
@@ -435,20 +435,19 @@ if callfunc == 'initialize':
     port = 12345
     ip = '127.0.0.1'
   listencommhandle = waitforconn(ip,port,hello)
-  
+
   # wait 60 seconds, then call stop_listening with listencommhandle
-  eventhandle = settimer(60, stop_listening, (listencommhandle,)) 
-  
+  eventhandle = settimer(60, stop_listening, (listencommhandle,))
+
 ```
- 
+
 The timer (when called) will stop the communication. settimer returns an eventhandle. An eventhandle is similar to a commhandle in that it can be used to interact with an event. listencommhandle is not the arguments of settimer but that of stop_listening. The comma next to stop_listening and parentheses surrounding listencommhandle indicate that.
 
 `getruntime()` is used to provide the amount of time that has elapsed since the program was started.   Note that it may be possible for the elapsed time to be > 60 seconds in this program because there may be some lag between when the program started and when your code ran or a delay in running the stop_listening event.
 
 Start the program and then open a web browser and in the address bar type: `IPaddress_of_VM:Clearinghouseport`.  You'll notice that the webpage displays and after 1 minute the program will stop listening and stop itself.   You'll see that the program's status is "Terminated" because it caused itself to exit (as opposed to "Stopped" where you stopped it while it was running).
 
-
-
+<a name="example15"></a>
 ### Interacting with Timers (example 1.5)
 ----
 [example.1.5.repy](https://raw.githubusercontent.com/SeattleTestbed/repy_v1/master/apps/example/example.1.5.repy)
@@ -474,11 +473,11 @@ def hello(ip,port,sockobj, thiscommhandle,listencommhandle):
 
   # stop the previous timer...
   canceltimer(mycontext['stopevent'])
-  
+
   # start a new one for 10 seconds from now...
   eventhandle = settimer(10, stop_listening, (listencommhandle,))
   mycontext['stopevent'] = eventhandle
- 
+
 def stop_listening(commhandle):
   stopcomm(commhandle)   # this will deregister hello
 
@@ -505,7 +504,7 @@ if callfunc == 'initialize':
   mycontext['stopevent'] = eventhandle
 ```
 
-Try running the program and then try browsing the webpage a few times and then wait. You'll notice the connection closes 10 seconds after you stop browsing. 
+Try running the program and then try browsing the webpage a few times and then wait. You'll notice the connection closes 10 seconds after you stop browsing.
 
 
 
@@ -533,10 +532,10 @@ def hello(ip,port,sockobj, thiscommhandle,listencommhandle):
   sleep(5)   # give me 5 seconds to trigger the race
 
   # wait 10 seconds, then call stop_listening with listencommhandle
-  eventhandle = settimer(10, stop_listening, (listencommhandle,)) 
-  
+  eventhandle = settimer(10, stop_listening, (listencommhandle,))
+
   mycontext['stopevent'] = eventhandle
- 
+
 def stop_listening(commhandle):
   stopcomm(commhandle)   # this will deregister hello
 
@@ -558,13 +557,13 @@ if callfunc == 'initialize':
     port = 12345
     ip = '127.0.0.1'
   listencommhandle = waitforconn(ip,port,hello)
-  
+
   # wait 10 seconds, then call stop_listening with listencommhandle
-  eventhandle = settimer(10, stop_listening, (listencommhandle,)) 
-  
+  eventhandle = settimer(10, stop_listening, (listencommhandle,))
+
   mycontext['stopevent'] = eventhandle
 ```
- 
+
 Try browsing the webpage a few times rapidly and then browse every 3-5 seconds.   You'll notice the program closes automatically even though it shouldn't (because you kept browsing).  
 
 One way to fix a race condition is using a lock. You can get a lock by calling `getlock()`. A lock supports two operations: acquire and release and is similar to the Python threading Lock class.
@@ -589,19 +588,19 @@ def hello(ip,port,sockobj, thiscommhandle,listencommhandle):
   canceltimer(mycontext['stopevent'])
 
   # wait 10 seconds, then call stop_listening with listencommhandle
-  eventhandle = settimer(10, stop_listening, (listencommhandle,)) 
-  
+  eventhandle = settimer(10, stop_listening, (listencommhandle,))
+
   mycontext['stopevent'] = eventhandle
 
   mycontext['stoplock'].release() # release the lock
- 
+
 def stop_listening(commhandle):
   stopcomm(commhandle)   # this will deregister hello
 
 if callfunc == 'initialize':
   mycontext['pagecount'] = 0
   mycontext['stoplock'] = getlock()
-  
+
   if len(callargs) > 1:
     raise Exception("Too many call arguments")
 
@@ -617,10 +616,10 @@ if callfunc == 'initialize':
     port = 12345
     ip = '127.0.0.1'
   listencommhandle = waitforconn(ip,port,hello)
-  
+
   # wait 10 seconds, then call stop_listening with listencommhandle
-  eventhandle = settimer(10, stop_listening, (listencommhandle,)) 
-  
+  eventhandle = settimer(10, stop_listening, (listencommhandle,))
+
   mycontext['stopevent'] = eventhandle
 ```
 
@@ -640,18 +639,18 @@ We'll now switch gears from our hello world web server and focus instead on writ
 
 ```python
 if callfunc == 'initialize':
-  
+
   # just like python's open() function
   myfileobject = open("hello.file","w")   
-  
+
   # we also could have used myfileobject.write("hello world\n")
   print >> myfileobject, "hello world"     
-    
+
   myfileobject.close()
 
   # we can use file instead of open.   They work the same...
   newfileobject = file("hello.file","r")   
-  
+
   print newfileobject.read()
   newfileobject.close()
 ```
@@ -675,23 +674,23 @@ In this example, we'll change our program to write information to a few differen
 ```python
 if callfunc == 'initialize':
   for filename in callargs:   # callargs has all of the command line arguments in it.
-    
+
     # just like python's open() function
     myfileobject = open(filename,"w")   
-   
+
     # we also could have used myfileobject.write("hello world\n")
     print >> myfileobject, "hello world"
-    
+
     myfileobject.close()
 
   # now we'll go through and print the files in this directory
   # (it may include things other than our files).
   print listdir()
-  
+
   for filename in callargs:   # let's remove our files now...
     removefile(filename)  
 
-  print "The files:",callargs," should now be missing from ",listdir() 
+  print "The files:",callargs," should now be missing from ",listdir()
 ```
 
 You should see output that first lists the file names in the current directory (along with the files you chose to write) and then shows the listing missing the files.   Note that if you choose file names with characters like "/", "
@@ -707,17 +706,17 @@ In this example, we'll retrieve a webpage and print it on the screen.   We're no
 
 ```python
 if callfunc == 'initialize':
- 
+
   # open a connection to the google web server
   socketobject = openconn("www.google.com",80)    
-  
+
   # this is a HTTP request...
   socketobject.send("GET /index.html HTTP/1.1\r\nHost: www.google.com\r\n\r\n")
- 
+
   while True:
      print socketobject.recv(4096)
 ```
-   
+
 You should see google's webpage along with some numbers and other information (this is the HTTP protocol).   However, the program does not stop (at least until you press CTRL-C)!   This is because HTTP 1.1 allows us to issue multiple page requests on a single connection.  
 
 
@@ -734,30 +733,30 @@ if callfunc == 'initialize':
 
   # open a connection to the google web server
   socketobject = openconn("www.google.com",80)   
-  
+
   # this is a HTTP request...
   socketobject.send("GET /index.html HTTP/1.1\r\nHost: www.google.com\r\n\r\n")
 
-  # We'll loop and print information from google. 
+  # We'll loop and print information from google.
   # We don't "speak" HTTP, so we'll set a timer to exit in 3 seconds
   settimer(3, exitall, ())
-  
+
   while True:
      print socketobject.recv(4096)
 ```
- 
+
 Alternatively, we could instead close the socket and check this condition.   Example code that shows this is below
 
 ```python
 if callfunc == 'initialize':
 
   # open a connection to the google web server
-  socketobject = openconn("www.google.com",80) 
-  
+  socketobject = openconn("www.google.com",80)
+
   # this is a HTTP request...
-  socketobject.send("GET /index.html HTTP/1.1\r\nHost: www.google.com\r\n\r\n") 
-  
-  # We'll loop and print information from google. 
+  socketobject.send("GET /index.html HTTP/1.1\r\nHost: www.google.com\r\n\r\n")
+
+  # We'll loop and print information from google.
   # We don't "speak" HTTP, so we'll set a timer to close the socket in 3 seconds
   settimer(3, socketobject.close, ())
 
@@ -817,10 +816,10 @@ def decode_NTP_packet(ip, port, mess, ch):
 if callfunc == 'initialize':
   ip = getmyip()
   timeservers = ["time-a.nist.gov", "time-b.nist.gov",
-      "time-a.timefreq.bldrdoc.gov", "time-b.timefreq.bldrdoc.gov", 
-      "time-c.timefreq.bldrdoc.gov", "utcnist.colorado.edu", "time.nist.gov", 
-      "time-nw.nist.gov", "nist1.symmetricom.com", "nist1-dc.WiTime.net", 
-      "nist1-ny.WiTime.net", "nist1-sj.WiTime.net", "nist.expertsmi.com", 
+      "time-a.timefreq.bldrdoc.gov", "time-b.timefreq.bldrdoc.gov",
+      "time-c.timefreq.bldrdoc.gov", "utcnist.colorado.edu", "time.nist.gov",
+      "time-nw.nist.gov", "nist1.symmetricom.com", "nist1-dc.WiTime.net",
+      "nist1-ny.WiTime.net", "nist1-sj.WiTime.net", "nist.expertsmi.com",
       "nist.netservicesgroup.com"]
 
   # choose a random time server from the list
@@ -841,6 +840,7 @@ Getting the time from a synchronized time source is a handy thing to do (so this
 
 
 
+<a name="restrictions"></a>
 ## Restrictions
 ----
 
